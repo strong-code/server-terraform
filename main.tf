@@ -7,11 +7,18 @@ terraform {
   }
 }
 
-# Set in .tfvars
+# The following are set in terraform.tfvars
+
 variable "do_token" {
   description = "DigitalOcean API token"
   type        = string
   sensitive   = true
+}
+
+variable "ssh_key_ids" {
+  description = "List of public SSH key IDs to attach to the droplet (~/.ssh/authorized_keys)"
+  type        = list(string)
+  default     = []
 }
 
 provider "digitalocean" {
@@ -25,6 +32,7 @@ resource "digitalocean_droplet" "chl-server" {
   size       = "s-1vcpu-1gb"
   monitoring = true
   ipv6       = true
+  ssh_keys   = var.ssh_key_ids
 }
 
 resource "digitalocean_firewall" "chl-firewall" {
