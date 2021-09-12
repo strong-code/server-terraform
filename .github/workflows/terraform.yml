@@ -3,7 +3,7 @@ name: Validate, format and plan main.tf
 on: push
 
 jobs:
-  terraform-validate:
+  fmt-validate-plan:
     if: github.ref == 'refs/heads/master'
     runs-on: [ubuntu-latest]
     steps:
@@ -11,6 +11,12 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with: 
           terraform_version: 1.0.5
+      - name: Terraform init
+        id: init
+        run: terraform init
       - name: Terraform fmt
         id: fmt
         run: terraform fmt
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
