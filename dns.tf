@@ -6,7 +6,7 @@ resource "digitalocean_domain" "strongcode" {
 resource "digitalocean_record" "www" {
   domain = digitalocean_domain.strongcode.name
   type   = "A"
-  name   = "wwww"
+  name   = "www"
   value  = digitalocean_droplet.chl-server.ipv4_address
 }
 
