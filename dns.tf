@@ -47,9 +47,18 @@ resource "digitalocean_record" "mx20" {
   value    = "mx2.zoho.com."
 }
 
-resource "digitalocean_record" "mail_verification" {
+resource "digitalocean_record" "mx50" {
+  domain   = digitalocean_domain.strongcode.name
+  type     = "MX"
+  priority = "50"
+  name     = "@"
+  value    = "mx3.zoho.com."
+}
+
+resource "digitalocean_record" "mail_verification_txt" {
   domain = digitalocean_domain.strongcode.name
   type   = "TXT"
   name   = "@"
   value  = var.mail_verification_record
 }
+
