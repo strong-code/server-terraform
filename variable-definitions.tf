@@ -17,3 +17,9 @@ variable "mail_verification_record" {
   type        = string
   sensitive   = true
 }
+
+variable "mail_spf_record" {
+  description = "Text value for SPF mail record"
+  type        = string
+  sensitive   = true
+}
