@@ -62,3 +62,9 @@ resource "digitalocean_record" "mail_verification_txt" {
   value  = var.mail_verification_record
 }
 
+resource "digitalocean_record" "mail_spf_txt" {
+  domain = digitalocean_domain.strongcode.name
+  type   = "TXT"
+  name   = "@"
+  value  = var.mail_spf_record
+}
